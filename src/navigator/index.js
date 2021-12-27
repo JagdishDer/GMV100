@@ -3,7 +3,7 @@ import {Platform, StatusBar, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {navigationRef} from './root-navigation';
-import {FirstScreen, SecondScreen} from '../screens';
+import {FirstScreen, SecondScreen, ViewAllUsers} from '../screens';
 
 const RootStack = createStackNavigator();
 
@@ -25,6 +25,11 @@ export default function () {
             name={'second-screen'}
             component={SecondScreen}
             options={{title: 'Second Screen'}}
+          />
+          <RootStack.Screen
+            name={'view-all-users'}
+            component={ViewAllUsers}
+            options={{title: 'All Users'}}
           />
         </RootStack.Navigator>
       </NavigationContainer>
