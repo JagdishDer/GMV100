@@ -4,6 +4,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {navigationRef} from './root-navigation';
 import {FirstScreen, SecondScreen, ViewAllUsers} from '../screens';
+import AllPosts from '../screens/all-posts';
+import CreatePost from '../screens/create-post';
 
 const RootStack = createStackNavigator();
 
@@ -19,17 +21,27 @@ export default function () {
           <RootStack.Screen
             name={'first-screen'}
             component={FirstScreen}
-            options={{title: 'First Screen'}}
+            options={{title: 'Home', headerBackTitle: ''}}
           />
           <RootStack.Screen
             name={'second-screen'}
             component={SecondScreen}
-            options={{title: 'Second Screen'}}
+            options={{title: 'User Info', headerBackTitle: ''}}
           />
           <RootStack.Screen
             name={'view-all-users'}
             component={ViewAllUsers}
-            options={{title: 'All Users'}}
+            options={{title: 'All Users', headerBackTitle: ''}}
+          />
+          <RootStack.Screen
+            name={'create-post'}
+            component={CreatePost}
+            options={{title: 'Create Post', headerBackTitle: ''}}
+          />
+          <RootStack.Screen
+            name={'all-posts'}
+            component={AllPosts}
+            options={{title: 'All Posts', headerBackTitle: ''}}
           />
         </RootStack.Navigator>
       </NavigationContainer>

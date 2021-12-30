@@ -1,10 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {View, ScrollView, KeyboardAvoidingView, Alert} from 'react-native';
+import {
+  View,
+  ScrollView,
+  KeyboardAvoidingView,
+  Alert,
+  StyleSheet,
+} from 'react-native';
 import {Button} from '../../components';
-import styles from './style';
 import Mytextinput from '../../components/text-input';
 import {useIsFocused} from '@react-navigation/native';
 import Realm from 'realm';
+import {Colors} from '../../constants';
 let realm;
 
 const SecondScreen = (props) => {
@@ -139,7 +145,7 @@ const SecondScreen = (props) => {
             style={{textAlignVertical: 'top'}}
           />
           <Button
-            title="Submit"
+            title={isUpdate ? 'Update' : 'Register'}
             onPress={isUpdate ? update_user : register_user}
           />
         </KeyboardAvoidingView>
@@ -147,5 +153,13 @@ const SecondScreen = (props) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: Colors.ui_white,
+  },
+});
 
 export default SecondScreen;

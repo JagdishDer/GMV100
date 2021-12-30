@@ -6,7 +6,6 @@ const Mytextinput = (props) => {
   return (
     <View
       style={{
-        paddingHorizontal: 15,
         marginBottom: 10,
         borderColor: Colors.ui_black,
         borderWidth: 1,
@@ -22,7 +21,10 @@ const Mytextinput = (props) => {
         numberOfLines={props.numberOfLines}
         multiline={props.multiline}
         onSubmitEditing={props.onSubmitEditing}
-        style={props.style}
+        style={[
+          props.style,
+          {paddingTop: 10, paddingBottom: 10, paddingHorizontal: 15},
+        ]}
         blurOnSubmit={false}
         value={props.value}
       />
