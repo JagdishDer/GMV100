@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import Realm from 'realm';
+import PostItem from '../../components/post-item';
 import {Colors} from '../../constants';
 import {UserPosts} from '../../realm-schemas';
 import {deletePost, getAllPosts} from '../../redux/actions/user-action';
@@ -35,6 +36,7 @@ const AllPosts = (props) => {
   const getPostsList = async () => {
     const posts_response = await dispatch(getAllPosts());
     if (posts_response.status == 200 && posts_response.data) {
+      setAllPosts(posts_response.data);
       // realm.write(() => {
       //   posts = realm.objects('all_posts');
       //   posts = posts_response.data;
@@ -42,28 +44,28 @@ const AllPosts = (props) => {
       //   console.log('posts', posts);
       // });
 
-      for (let post of posts_response.data) {
-        realm.write(() => {
-          var obj = realm.objects('all_posts').filtered('id =' + post.id);
-          if (obj.length > 0) {
-            console.log('update post');
-            obj[0].userId = post.userId;
-            obj[0].id = post.id;
-            obj[0].body = post.body;
-            obj[0].title = post.title;
-          } else {
-            realm.create('all_posts', {
-              userId: post.userId,
-              id: post.id,
-              body: post.body,
-              title: post.title,
-            });
-          }
-        });
-      }
-      const posts = realm.objects('all_posts');
-      setAllPosts(posts);
-      console.log('posts updated...', posts);
+      // for (let post of posts_response.data) {
+      //   realm.write(() => {
+      //     var obj = realm.objects('all_posts').filtered('id =' + post.id);
+      //     if (obj.length > 0) {
+      //       console.log('update post');
+      //       obj[0].userId = post.userId;
+      //       obj[0].id = post.id;
+      //       obj[0].body = post.body;
+      //       obj[0].title = post.title;
+      //     } else {
+      //       realm.create('all_posts', {
+      //         userId: post.userId,
+      //         id: post.id,
+      //         body: post.body,
+      //         title: post.title,
+      //       });
+      //     }
+      //   });
+      // }
+      // const posts = realm.objects('all_posts');
+      // setAllPosts(posts);
+      // console.log('posts updated...', posts);
     }
   };
 
@@ -101,25 +103,12 @@ const AllPosts = (props) => {
       <FlatList
         data={allPosts}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({item}) => (
-          <View style={styles.itemContainer}>
-            <View style={{flex: 1}}>
-              <Text>userId: {item.userId}</Text>
-              <Text>Id: {item.id}</Text>
-              <Text>Title: {item.title}</Text>
-              <Text>Body: {item.body}</Text>
-            </View>
-            <View style={{justifyContent: 'space-between'}}>
-              <TouchableOpacity onPress={() => onDeletePress(item)}>
-                <Text style={styles.deleteText}>{'Delete'}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => onEditPress(item)}>
-                <Text style={[styles.deleteText, {color: Colors.ui_green}]}>
-                  {'Edit'}
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+        renderItem={({item, index}) => (
+          <PostItem
+            key={String(index)}
+            item={item}
+            onDeletePress={onDeletePress}
+          />
         )}
       />
     </View>
