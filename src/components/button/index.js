@@ -1,19 +1,73 @@
 import React from 'react';
-import { ActivityIndicator, Text, TouchableOpacity } from 'react-native';
-import { Colors } from '../../constants';
-import styles from './style';
+import {ActivityIndicator, Text, TouchableOpacity, View} from 'react-native';
+import PropTypes from 'prop-types';
+import {ButtonSizes, ButtonTypes, Colors} from '../../constants';
+import styles, {getTextColor} from './style';
+import {AppText} from '..';
 
-const Button = ({ title, onPress, loading }) => {
+const Button = ({
+  title,
+  icon,
+  onPress,
+  loading,
+  disabled,
+  style,
+  type,
+  size,
+  fontSize,
+}) => {
+  return (
+    <TouchableOpacity
+      disabled={disabled}
+      onPress={onPress}
+      activeOpacity={0.5}
+      style={[styles.buttonContainer(type, size, disabled), style]}>
+      {loading ? (
+        <ActivityIndicator size={'small'} color={Colors.ui_white} />
+      ) : (
+        <View style={styles.rowCenter}>
+          {icon}
+          {title != '' ? (
+            <AppText size={fontSize} color={getTextColor(type)}>
+              {title}
+            </AppText>
+          ) : null}
+        </View>
+      )}
+    </TouchableOpacity>
+  );
+};
 
-    return (
-        <TouchableOpacity onPress={onPress} style={styles.buttonContainer}>
-            {loading ? (
-                <ActivityIndicator size={'small'} color={Colors.ui_white} />
-            ) : (
-                <Text style={styles.buttonTitle}>{title}</Text>
-            )}
-        </TouchableOpacity>
-    );
+Button.propTypes = {
+  title: PropTypes.string,
+  icon: PropTypes.any,
+  loading: PropTypes.bool,
+  disabled: PropTypes.bool,
+  fontSize: PropTypes.number,
+  style: PropTypes.any,
+  onPress: PropTypes.func,
+  type: PropTypes.oneOf([
+    ButtonTypes.default,
+    ButtonTypes.danger,
+    ButtonTypes.outline,
+    ButtonTypes.text,
+  ]),
+  size: PropTypes.oneOf([
+    ButtonSizes.default,
+    ButtonSizes.medium,
+    ButtonSizes.small,
+  ]),
+};
+
+Button.defaultProps = {
+  type: ButtonTypes.default,
+  size: ButtonSizes.default,
+  fontSize: 14,
+  title: '',
+  icon: null,
+  loading: false,
+  disabled: false,
+  onPress: () => {},
 };
 
 export default Button;

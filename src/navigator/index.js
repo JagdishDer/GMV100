@@ -6,6 +6,8 @@ import {navigationRef} from './root-navigation';
 import {FirstScreen, SecondScreen, ViewAllUsers} from '../screens';
 import AllPosts from '../screens/all-posts';
 import CreatePost from '../screens/create-post';
+import HomeScreen from '../screens/home-screen';
+import ButtonsScreen from '../screens/buttons';
 
 const RootStack = createStackNavigator();
 
@@ -17,11 +19,21 @@ export default function () {
         backgroundColor={'#000'}
       />
       <NavigationContainer ref={navigationRef}>
-        <RootStack.Navigator initialRouteName={'first-screen'}>
+        <RootStack.Navigator initialRouteName={'home-screen'}>
+          <RootStack.Screen
+            name={'home-screen'}
+            component={HomeScreen}
+            options={{title: 'Home', headerBackTitle: ''}}
+          />
+          <RootStack.Screen
+            name={'buttons-screen'}
+            component={ButtonsScreen}
+            options={{title: 'Buttons', headerBackTitle: ''}}
+          />
           <RootStack.Screen
             name={'first-screen'}
             component={FirstScreen}
-            options={{title: 'Home', headerBackTitle: ''}}
+            options={{title: 'Realm Example', headerBackTitle: ''}}
           />
           <RootStack.Screen
             name={'second-screen'}
