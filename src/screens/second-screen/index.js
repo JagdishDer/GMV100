@@ -6,8 +6,7 @@ import {
   Alert,
   StyleSheet,
 } from 'react-native';
-import {Button} from '../../components';
-import Mytextinput from '../../components/text-input';
+import {Button, CustomTextInput} from '../../components';
 import {useIsFocused} from '@react-navigation/native';
 import Realm from 'realm';
 import {Colors} from '../../constants';
@@ -123,19 +122,19 @@ const SecondScreen = (props) => {
         <KeyboardAvoidingView
           behavior="padding"
           style={{flex: 1, justifyContent: 'space-between'}}>
-          <Mytextinput
+          <CustomTextInput
             value={user_name}
             placeholder="Enter Name"
             onChangeText={setUsername}
           />
-          <Mytextinput
+          <CustomTextInput
             value={user_contact}
             placeholder="Enter Contact No"
             onChangeText={setUserContact}
             maxLength={10}
             keyboardType="numeric"
           />
-          <Mytextinput
+          <CustomTextInput
             value={user_address}
             placeholder="Enter Address"
             onChangeText={setUserAddress}
@@ -147,6 +146,7 @@ const SecondScreen = (props) => {
           <Button
             title={isUpdate ? 'Update' : 'Register'}
             onPress={isUpdate ? update_user : register_user}
+            style={{width: '100%'}}
           />
         </KeyboardAvoidingView>
       </ScrollView>

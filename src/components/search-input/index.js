@@ -9,62 +9,33 @@ import {
 import {Colors} from '../../constants/colors';
 import PropTypes from 'prop-types';
 import {Icons} from '../../constants';
-import {AppText} from '..';
 
-export function CustomTextInput({
-  value,
-  label,
-  style,
-  disabled,
-  error,
-  onChangeText,
-  ...props
-}) {
+export function SearchInput({value, style, disabled, onChangeText, ...props}) {
   const [isFocused, setIsFocused] = useState(false);
 
   const onCloseIconPress = () => {
     onChangeText('');
   };
 
-  const onChangeInputText = (searchText) => {
+  const onChangeSearchText = (searchText) => {
     onChangeText(searchText);
   };
 
   return (
     <View style={styles.container}>
-      {label ? (
-        <AppText size={12} color={disabled ? Colors.ui_grey : Colors.ui_grey_2}>
-          {label}
-        </AppText>
-      ) : null}
       <View
         style={[
           styles.inputContainer,
           {
-            borderTopColor: error
-              ? Colors.ui_error
-              : isFocused
-              ? Colors.ui_black
-              : Colors.ui_input_bg,
-            borderLeftColor: error
-              ? Colors.ui_error
-              : isFocused
-              ? Colors.ui_black
-              : Colors.ui_input_bg,
-            borderRightColor: error
-              ? Colors.ui_error
-              : isFocused
-              ? Colors.ui_black
-              : Colors.ui_input_bg,
-            borderBottomColor: error
-              ? Colors.ui_error
-              : disabled
-              ? Colors.ui_input_bg
-              : isFocused
-              ? Colors.ui_black
-              : Colors.ui_grey_2,
+            borderTopColor: isFocused ? Colors.ui_grey_2 : Colors.ui_input_bg,
+            borderLeftColor: isFocused ? Colors.ui_grey_2 : Colors.ui_input_bg,
+            borderRightColor: isFocused ? Colors.ui_grey_2 : Colors.ui_input_bg,
+            borderBottomColor: disabled ? Colors.ui_input_bg : Colors.ui_grey_2,
           },
         ]}>
+        <View style={{marginEnd: 10}}>
+          <Image style={styles.icon(disabled)} source={Icons.search} />
+        </View>
         <TextInput
           {...props}
           value={value}
@@ -74,22 +45,14 @@ export function CustomTextInput({
           autoCapitalize={'none'}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          onChangeText={onChangeInputText}
+          onChangeText={onChangeSearchText}
         />
         {value.length > 0 ? (
           <TouchableOpacity onPress={onCloseIconPress} style={{padding: 5}}>
             <Image style={styles.closeIcon} source={Icons.close} />
           </TouchableOpacity>
         ) : null}
-        {error ? (
-          <Image style={styles.errorIcon} source={Icons.input_error} />
-        ) : null}
       </View>
-      {error ? (
-        <AppText size={12} color={Colors.ui_error}>
-          {error}
-        </AppText>
-      ) : null}
     </View>
   );
 }
@@ -102,7 +65,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 10,
-    paddingVertical: 3,
+    paddingVertical: 5,
     marginVertical: 5,
     backgroundColor: Colors.ui_input_bg,
     borderWidth: 1,
@@ -114,30 +77,31 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '400',
   },
+  icon: function (disabled) {
+    return {
+      width: 24,
+      height: 24,
+      resizeMode: 'contain',
+      tintColor: disabled ? Colors.ui_grey : Colors.ui_grey_2,
+    };
+  },
   closeIcon: {
     width: 18,
     height: 18,
     resizeMode: 'contain',
     tintColor: Colors.ui_grey_2,
   },
-  errorIcon: {
-    width: 20,
-    height: 20,
-    resizeMode: 'contain',
-  },
 });
 
-CustomTextInput.propTypes = {
-  label: PropTypes.string,
+SearchInput.propTypes = {
   value: PropTypes.string,
   style: PropTypes.any,
   disabled: PropTypes.bool,
-  error: PropTypes.any,
+  onChangeText: PropTypes.func,
 };
 
-CustomTextInput.defaultProps = {
-  label: '',
+SearchInput.defaultProps = {
   value: '',
   disabled: false,
-  error: null,
+  onChangeText: (text) => {},
 };

@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import {Button} from '../../components';
-import Mytextinput from '../../components/text-input';
+import CustomTextInput from '../../components/text-input';
 import {Colors} from '../../constants';
 import {createPost, updatePost} from '../../redux/actions/user-action';
 
@@ -87,12 +87,12 @@ const CreatePost = (props) => {
         <KeyboardAvoidingView
           behavior="padding"
           style={{flex: 1, justifyContent: 'space-between'}}>
-          <Mytextinput
+          <CustomTextInput
             value={postTitle}
             placeholder="Post Title"
             onChangeText={setPostTitle}
           />
-          <Mytextinput
+          <CustomTextInput
             value={postDescription}
             placeholder="Post Description"
             onChangeText={setPostDescription}

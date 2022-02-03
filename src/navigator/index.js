@@ -3,11 +3,17 @@ import {Platform, StatusBar, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {navigationRef} from './root-navigation';
-import {FirstScreen, SecondScreen, ViewAllUsers} from '../screens';
+import {
+  FirstScreen,
+  SecondScreen,
+  ViewAllUsers,
+  FontsScreen,
+  ButtonsScreen,
+  HomeScreen,
+  SearchScreen,
+} from '../screens';
 import AllPosts from '../screens/all-posts';
 import CreatePost from '../screens/create-post';
-import HomeScreen from '../screens/home-screen';
-import ButtonsScreen from '../screens/buttons';
 
 const RootStack = createStackNavigator();
 
@@ -29,6 +35,16 @@ export default function () {
             name={'buttons-screen'}
             component={ButtonsScreen}
             options={{title: 'Buttons', headerBackTitle: ''}}
+          />
+          <RootStack.Screen
+            name={'fonts-screen'}
+            component={FontsScreen}
+            options={{title: 'Fonts', headerBackTitle: ''}}
+          />
+          <RootStack.Screen
+            name={'search-screen'}
+            component={SearchScreen}
+            options={{title: 'Input Components', headerBackTitle: ''}}
           />
           <RootStack.Screen
             name={'first-screen'}

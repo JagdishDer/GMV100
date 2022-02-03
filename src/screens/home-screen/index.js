@@ -1,7 +1,7 @@
 import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {Button} from '../../components';
-import {Colors} from '../../constants';
+import {ButtonSizes, ButtonTypes, Colors} from '../../constants';
 import {useNavigation} from '@react-navigation/native';
 
 const Home = () => {
@@ -10,12 +10,35 @@ const Home = () => {
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <Button
-          type={'default'}
-          size={'default'}
+          type={ButtonTypes.outline}
+          size={ButtonSizes.default}
+          title={'Font Components'}
+          onPress={() => navigation.navigate('fonts-screen')}
+          style={styles.button}
+        />
+        <Button
+          type={ButtonTypes.default}
+          size={ButtonSizes.default}
           title={'Button Components'}
           onPress={() => navigation.navigate('buttons-screen')}
           style={styles.button}
         />
+        <Button
+          type={ButtonTypes.outline}
+          size={ButtonSizes.default}
+          title={'Input Components'}
+          onPress={() => navigation.navigate('search-screen')}
+          style={styles.button}
+        />
+        {/* <Button
+          type={ButtonTypes.default}
+          size={ButtonSizes.default}
+          title={'Realm Example'}
+          onPress={() =>
+            navigation.navigate('second-screen', {isUpdate: false})
+          }
+          style={styles.button}
+        /> */}
       </ScrollView>
     </View>
   );
