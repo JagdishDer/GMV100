@@ -6,6 +6,7 @@ import {FontTypes} from '../../constants/font-types';
 
 const SearchScreen = () => {
   const [searchText, setSearchText] = useState('');
+  const [textAreaField, setTextAreaField] = useState('');
 
   return (
     <View style={styles.container}>
@@ -51,6 +52,33 @@ const SearchScreen = () => {
           label={'Label'}
           placeholder={'Placeholder text'}
           onChangeText={() => {}}
+        />
+
+        {/* TextArea Input */}
+        <AppText
+          size={18}
+          fontType={FontTypes.medium}
+          style={{marginVertical: 15}}>
+          {'TextArea Components'}
+        </AppText>
+        <CustomTextInput
+          value={textAreaField}
+          label={'Label'}
+          labelRight={`${textAreaField.length}/100`}
+          placeholder={'Placeholder text'}
+          onChangeText={() => {}}
+          onChangeText={setTextAreaField}
+          style={{height: 100}}
+        />
+        <CustomTextInput
+          value={textAreaField}
+          label={'Label'}
+          labelRight={`${textAreaField.length}/100`}
+          placeholder={'Placeholder text'}
+          onChangeText={() => {}}
+          onChangeText={setTextAreaField}
+          style={{height: 100}}
+          error={'Error message'}
         />
       </ScrollView>
     </View>

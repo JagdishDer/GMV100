@@ -5,6 +5,7 @@ import ButtonsScreen from './buttons';
 import FontsScreen from './fonts-screen';
 import HomeScreen from './home-screen';
 import SearchScreen from './search-screen';
+import DropDownScreen from './dropdown-screen';
 
 export {
   FirstScreen,
@@ -14,4 +15,5 @@ export {
   FontsScreen,
   HomeScreen,
   SearchScreen,
+  DropDownScreen,
 };

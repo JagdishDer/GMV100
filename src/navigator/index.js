@@ -11,6 +11,7 @@ import {
   ButtonsScreen,
   HomeScreen,
   SearchScreen,
+  DropDownScreen,
 } from '../screens';
 import AllPosts from '../screens/all-posts';
 import CreatePost from '../screens/create-post';
@@ -45,6 +46,11 @@ export default function () {
             name={'search-screen'}
             component={SearchScreen}
             options={{title: 'Input Components', headerBackTitle: ''}}
+          />
+          <RootStack.Screen
+            name={'dropdown-screen'}
+            component={DropDownScreen}
+            options={{title: 'DropDown Components', headerBackTitle: ''}}
           />
           <RootStack.Screen
             name={'first-screen'}

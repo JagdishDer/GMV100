@@ -30,6 +30,13 @@ const Home = () => {
           onPress={() => navigation.navigate('search-screen')}
           style={styles.button}
         />
+        <Button
+          type={ButtonTypes.default}
+          size={ButtonSizes.default}
+          title={'DropDown Components'}
+          onPress={() => navigation.navigate('dropdown-screen')}
+          style={styles.button}
+        />
         {/* <Button
           type={ButtonTypes.default}
           size={ButtonSizes.default}

@@ -14,6 +14,7 @@ import {AppText} from '..';
 export function CustomTextInput({
   value,
   label,
+  labelRight,
   style,
   disabled,
   error,
@@ -32,11 +33,24 @@ export function CustomTextInput({
 
   return (
     <View style={styles.container}>
-      {label ? (
-        <AppText size={12} color={disabled ? Colors.ui_grey : Colors.ui_grey_2}>
-          {label}
-        </AppText>
-      ) : null}
+      <View style={styles.rowCenter}>
+        <View style={{flex: 1}}>
+          {label ? (
+            <AppText
+              size={12}
+              color={disabled ? Colors.ui_grey : Colors.ui_grey_2}>
+              {label}
+            </AppText>
+          ) : null}
+        </View>
+        {labelRight ? (
+          <AppText
+            size={12}
+            color={disabled ? Colors.ui_grey : Colors.ui_grey_2}>
+            {labelRight}
+          </AppText>
+        ) : null}
+      </View>
       <View
         style={[
           styles.inputContainer,
@@ -125,10 +139,15 @@ const styles = StyleSheet.create({
     height: 20,
     resizeMode: 'contain',
   },
+  rowCenter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 });
 
 CustomTextInput.propTypes = {
   label: PropTypes.string,
+  labelRight: PropTypes.string,
   value: PropTypes.string,
   style: PropTypes.any,
   disabled: PropTypes.bool,
@@ -137,6 +156,7 @@ CustomTextInput.propTypes = {
 
 CustomTextInput.defaultProps = {
   label: '',
+  labelRight: '',
   value: '',
   disabled: false,
   error: null,
