@@ -27,10 +27,10 @@ export function SearchInput({value, style, disabled, onChangeText, ...props}) {
         style={[
           styles.inputContainer,
           {
-            borderTopColor: isFocused ? Colors.ui_grey_2 : Colors.ui_input_bg,
-            borderLeftColor: isFocused ? Colors.ui_grey_2 : Colors.ui_input_bg,
-            borderRightColor: isFocused ? Colors.ui_grey_2 : Colors.ui_input_bg,
-            borderBottomColor: disabled ? Colors.ui_input_bg : Colors.ui_grey_2,
+            borderTopColor: isFocused ? Colors.ui_grey_2 : Colors.ui_grey_4,
+            borderLeftColor: isFocused ? Colors.ui_grey_2 : Colors.ui_grey_4,
+            borderRightColor: isFocused ? Colors.ui_grey_2 : Colors.ui_grey_4,
+            borderBottomColor: disabled ? Colors.ui_grey_4 : Colors.ui_grey_2,
           },
         ]}>
         <View style={{marginEnd: 10}}>
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
     marginVertical: 5,
-    backgroundColor: Colors.ui_input_bg,
+    backgroundColor: Colors.ui_grey_4,
     borderWidth: 1,
   },
   input: {

@@ -10,16 +10,16 @@ import {
 import {AppText} from '..';
 import {Colors, DIMENSIONS, Icons} from '../../constants';
 
-export const Dropdown = ({
+export const MultiSelectDropdown = ({
   label = '',
   data = [],
-  onSelect = (item) => {},
+  selectedLabels = [],
+  onUpdateSelected = (items) => {},
   error = null,
   disabled = false,
 }) => {
   const DropdownButton = useRef();
   const [visible, setVisible] = useState(false);
-  const [selected, setSelected] = useState(undefined);
   const [dropdownTop, setDropdownTop] = useState(0);
 
   const toggleDropdown = () => {
@@ -33,10 +33,38 @@ export const Dropdown = ({
     setVisible(true);
   };
 
+  const isLabelSelected = (item) => {
+    if (selectedLabels.length > 0) {
+      for (let seletedLabel of selectedLabels) {
+        if (seletedLabel.label == item.label) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    } else {
+      return false;
+    }
+  };
+
   const onItemPress = (item) => {
-    setSelected(item);
-    onSelect(item);
+    if (isLabelSelected(item)) {
+      const filteredSelected = selectedLabels.filter(
+        (selectedItem) => item.label != selectedItem.label,
+      );
+      onUpdateSelected(filteredSelected);
+    } else {
+      selectedLabels.push(item);
+      onUpdateSelected(selectedLabels);
+    }
     setVisible(false);
+  };
+
+  const onRemoveSelectedItem = (item) => {
+    const filteredSelected = selectedLabels.filter(
+      (selectedItem) => item.label != selectedItem.label,
+    );
+    onUpdateSelected(filteredSelected);
   };
 
   const renderItem = ({item}) => (
@@ -44,21 +72,16 @@ export const Dropdown = ({
       style={[
         styles.item,
         {
-          backgroundColor:
-            selected?.label === item.label
-              ? Colors.ui_grey_3
-              : Colors.ui_grey_4,
+          backgroundColor: isLabelSelected(item)
+            ? Colors.ui_grey_3
+            : Colors.ui_grey_4,
         },
       ]}
       onPress={() => onItemPress(item)}>
-      <AppText
-        numberOfLines={1}
-        size={14}
-        color={Colors.ui_grey_2}
-        style={styles.itemTitle}>
+      <AppText size={14} color={Colors.ui_grey_2} style={styles.itemTitle}>
         {item.label}
       </AppText>
-      {selected?.label === item.label ? (
+      {isLabelSelected(item) ? (
         <Image style={styles.icon} source={Icons.check} />
       ) : null}
     </TouchableOpacity>
@@ -107,13 +130,49 @@ export const Dropdown = ({
       onPress={toggleDropdown}>
       {data && data.length > 0 ? <View>{renderDropdown()}</View> : null}
 
-      <AppText
-        numberOfLines={1}
-        size={14}
-        color={Colors.ui_grey_1}
-        style={styles.title}>
-        {(selected && selected.label) || label}
-      </AppText>
+      <View style={{flexGrow: 1}}>
+        {selectedLabels.length > 0 ? (
+          <View
+            style={{
+              maxWidth: '90%',
+              flexDirection: 'row',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+            }}>
+            {selectedLabels.map((selectedItem, selectedIndex) => {
+              return (
+                <View
+                  key={String(selectedIndex)}
+                  style={styles.selectedLabelContainer}>
+                  <AppText
+                    numberOfLines={1}
+                    size={14}
+                    color={Colors.ui_grey_1}
+                    style={styles.title}>
+                    {selectedItem.label}
+                  </AppText>
+                  <TouchableOpacity
+                    onPress={() => onRemoveSelectedItem(selectedItem)}>
+                    <Image
+                      style={[styles.icon, {marginStart: 5}]}
+                      source={Icons.close}
+                    />
+                  </TouchableOpacity>
+                </View>
+              );
+            })}
+          </View>
+        ) : (
+          <AppText
+            numberOfLines={1}
+            size={14}
+            color={Colors.ui_grey_1}
+            style={styles.title}>
+            {label}
+          </AppText>
+        )}
+      </View>
+
       {error ? (
         <View style={styles.iconContainer}>
           <Image style={styles.icon} source={Icons.input_error} />
@@ -139,6 +198,14 @@ const styles = StyleSheet.create({
     borderColor: Colors.ui_grey_2,
     zIndex: 1,
   },
+  selectedLabelContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 5,
+    backgroundColor: Colors.ui_grey_3,
+    marginStart: 10,
+    marginBottom: 10,
+  },
   iconContainer: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -150,7 +217,6 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   title: {
-    flex: 1,
     marginStart: 10,
   },
   dropdown: {

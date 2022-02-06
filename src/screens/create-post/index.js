@@ -8,8 +8,7 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
-import {Button} from '../../components';
-import CustomTextInput from '../../components/text-input';
+import {Button, CustomTextInput} from '../../components';
 import {Colors} from '../../constants';
 import {createPost, updatePost} from '../../redux/actions/user-action';
 

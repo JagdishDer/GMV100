@@ -37,15 +37,20 @@ const Home = () => {
           onPress={() => navigation.navigate('dropdown-screen')}
           style={styles.button}
         />
-        {/* <Button
+        <Button
+          type={ButtonTypes.outline}
+          size={ButtonSizes.default}
+          title={'Tabs Components'}
+          onPress={() => navigation.navigate('tabs-screen')}
+          style={styles.button}
+        />
+        <Button
           type={ButtonTypes.default}
           size={ButtonSizes.default}
           title={'Realm Example'}
-          onPress={() =>
-            navigation.navigate('second-screen', {isUpdate: false})
-          }
+          onPress={() => navigation.navigate('first-screen', {isUpdate: false})}
           style={styles.button}
-        /> */}
+        />
       </ScrollView>
     </View>
   );

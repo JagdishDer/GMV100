@@ -6,6 +6,9 @@ import FontsScreen from './fonts-screen';
 import HomeScreen from './home-screen';
 import SearchScreen from './search-screen';
 import DropDownScreen from './dropdown-screen';
+import CreatePost from './create-post';
+import AllPosts from './all-posts';
+import TabsScreen from './tabs-screen';
 
 export {
   FirstScreen,
@@ -16,4 +19,7 @@ export {
   HomeScreen,
   SearchScreen,
   DropDownScreen,
+  CreatePost,
+  AllPosts,
+  TabsScreen,
 };

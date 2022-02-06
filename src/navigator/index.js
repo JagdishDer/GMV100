@@ -12,9 +12,10 @@ import {
   HomeScreen,
   SearchScreen,
   DropDownScreen,
+  CreatePost,
+  AllPosts,
+  TabsScreen,
 } from '../screens';
-import AllPosts from '../screens/all-posts';
-import CreatePost from '../screens/create-post';
 
 const RootStack = createStackNavigator();
 
@@ -51,6 +52,11 @@ export default function () {
             name={'dropdown-screen'}
             component={DropDownScreen}
             options={{title: 'DropDown Components', headerBackTitle: ''}}
+          />
+          <RootStack.Screen
+            name={'tabs-screen'}
+            component={TabsScreen}
+            options={{title: 'Tabs Components', headerBackTitle: ''}}
           />
           <RootStack.Screen
             name={'first-screen'}

@@ -59,21 +59,21 @@ export function CustomTextInput({
               ? Colors.ui_error
               : isFocused
               ? Colors.ui_black
-              : Colors.ui_input_bg,
+              : Colors.ui_grey_4,
             borderLeftColor: error
               ? Colors.ui_error
               : isFocused
               ? Colors.ui_black
-              : Colors.ui_input_bg,
+              : Colors.ui_grey_4,
             borderRightColor: error
               ? Colors.ui_error
               : isFocused
               ? Colors.ui_black
-              : Colors.ui_input_bg,
+              : Colors.ui_grey_4,
             borderBottomColor: error
               ? Colors.ui_error
               : disabled
-              ? Colors.ui_input_bg
+              ? Colors.ui_grey_4
               : isFocused
               ? Colors.ui_black
               : Colors.ui_grey_2,
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 3,
     marginVertical: 5,
-    backgroundColor: Colors.ui_input_bg,
+    backgroundColor: Colors.ui_grey_4,
     borderWidth: 1,
   },
   input: {
