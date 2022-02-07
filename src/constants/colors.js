@@ -7,7 +7,7 @@ export const Colors = {
   ui_grey_3: '#6b6c721a',
   ui_grey_dark: '#6B6C72',
   ui_error: '#DE353E',
-  ui_green: '	rgb(0,100,0)',
+  ui_green: 'rgb(0,100,0)',
   ui_green_20: 'rgba(0,100,0,0.2)',
   ui_button_black: '#393A3D',
   ui_button_disabled: '#393a3d33',

@@ -10,6 +10,7 @@ import CreatePost from './create-post';
 import AllPosts from './all-posts';
 import TabsScreen from './tabs-screen';
 import SectionListScreen from './section-list-screen';
+import GraphScreen from './graph-screen';
 
 export {
   FirstScreen,
@@ -24,4 +25,5 @@ export {
   AllPosts,
   TabsScreen,
   SectionListScreen,
+  GraphScreen,
 };

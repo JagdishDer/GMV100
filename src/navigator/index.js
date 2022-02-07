@@ -16,6 +16,7 @@ import {
   AllPosts,
   TabsScreen,
   SectionListScreen,
+  GraphScreen,
 } from '../screens';
 
 const RootStack = createStackNavigator();
@@ -63,6 +64,11 @@ export default function () {
             name={'sectionlist-screen'}
             component={SectionListScreen}
             options={{title: 'List Components', headerBackTitle: ''}}
+          />
+          <RootStack.Screen
+            name={'graph-screen'}
+            component={GraphScreen}
+            options={{title: 'Graph Components', headerBackTitle: ''}}
           />
           <RootStack.Screen
             name={'first-screen'}

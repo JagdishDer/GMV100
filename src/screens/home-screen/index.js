@@ -52,6 +52,13 @@ const Home = () => {
           style={styles.button}
         />
         <Button
+          type={ButtonTypes.outline}
+          size={ButtonSizes.default}
+          title={'Graph Components'}
+          onPress={() => navigation.navigate('graph-screen')}
+          style={styles.button}
+        />
+        <Button
           type={ButtonTypes.default}
           size={ButtonSizes.default}
           title={'Realm Example'}
