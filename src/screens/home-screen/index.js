@@ -47,6 +47,13 @@ const Home = () => {
         <Button
           type={ButtonTypes.default}
           size={ButtonSizes.default}
+          title={'List Components'}
+          onPress={() => navigation.navigate('sectionlist-screen')}
+          style={styles.button}
+        />
+        <Button
+          type={ButtonTypes.default}
+          size={ButtonSizes.default}
           title={'Realm Example'}
           onPress={() => navigation.navigate('first-screen', {isUpdate: false})}
           style={styles.button}

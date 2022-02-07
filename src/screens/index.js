@@ -9,6 +9,7 @@ import DropDownScreen from './dropdown-screen';
 import CreatePost from './create-post';
 import AllPosts from './all-posts';
 import TabsScreen from './tabs-screen';
+import SectionListScreen from './section-list-screen';
 
 export {
   FirstScreen,
@@ -22,4 +23,5 @@ export {
   CreatePost,
   AllPosts,
   TabsScreen,
+  SectionListScreen,
 };

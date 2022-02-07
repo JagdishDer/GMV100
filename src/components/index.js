@@ -5,6 +5,8 @@ import {SearchInput} from './search-input';
 import {Dropdown} from './drop-down';
 import {MultiSelectDropdown} from './multi-select-dropdown';
 import {TabBar} from './tab-bar';
+import {SectionListComponent} from './section-list';
+import {SectionListHeader} from './section-list-header';
 
 export {
   Button,
@@ -14,4 +16,6 @@ export {
   Dropdown,
   MultiSelectDropdown,
   TabBar,
+  SectionListComponent,
+  SectionListHeader,
 };

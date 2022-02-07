@@ -15,6 +15,7 @@ import {
   CreatePost,
   AllPosts,
   TabsScreen,
+  SectionListScreen,
 } from '../screens';
 
 const RootStack = createStackNavigator();
@@ -57,6 +58,11 @@ export default function () {
             name={'tabs-screen'}
             component={TabsScreen}
             options={{title: 'Tabs Components', headerBackTitle: ''}}
+          />
+          <RootStack.Screen
+            name={'sectionlist-screen'}
+            component={SectionListScreen}
+            options={{title: 'List Components', headerBackTitle: ''}}
           />
           <RootStack.Screen
             name={'first-screen'}
