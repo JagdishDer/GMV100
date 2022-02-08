@@ -61,6 +61,13 @@ const Home = () => {
         <Button
           type={ButtonTypes.default}
           size={ButtonSizes.default}
+          title={'Table Components'}
+          onPress={() => navigation.navigate('table-screen')}
+          style={styles.button}
+        />
+        <Button
+          type={ButtonTypes.outline}
+          size={ButtonSizes.default}
           title={'Realm Example'}
           onPress={() => navigation.navigate('first-screen', {isUpdate: false})}
           style={styles.button}

@@ -1,4 +1,4 @@
-import React, {FC, ReactElement, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   FlatList,
   StyleSheet,
@@ -36,10 +36,8 @@ export const MultiSelectDropdown = ({
   const isLabelSelected = (item) => {
     if (selectedLabels.length > 0) {
       for (let seletedLabel of selectedLabels) {
-        if (seletedLabel.label == item.label) {
+        if (seletedLabel.label === item.label) {
           return true;
-        } else {
-          return false;
         }
       }
     } else {
@@ -48,14 +46,15 @@ export const MultiSelectDropdown = ({
   };
 
   const onItemPress = (item) => {
+    let selectedItems = selectedLabels;
     if (isLabelSelected(item)) {
-      const filteredSelected = selectedLabels.filter(
+      const filteredSelected = selectedItems.filter(
         (selectedItem) => item.label != selectedItem.label,
       );
       onUpdateSelected(filteredSelected);
     } else {
-      selectedLabels.push(item);
-      onUpdateSelected(selectedLabels);
+      selectedItems.push(item);
+      onUpdateSelected(selectedItems);
     }
     setVisible(false);
   };
@@ -67,25 +66,30 @@ export const MultiSelectDropdown = ({
     onUpdateSelected(filteredSelected);
   };
 
-  const renderItem = ({item}) => (
-    <TouchableOpacity
-      style={[
-        styles.item,
-        {
-          backgroundColor: isLabelSelected(item)
-            ? Colors.ui_grey_3
-            : Colors.ui_grey_4,
-        },
-      ]}
-      onPress={() => onItemPress(item)}>
-      <AppText size={14} color={Colors.ui_grey_2} style={styles.itemTitle}>
-        {item.label}
-      </AppText>
-      {isLabelSelected(item) ? (
-        <Image style={styles.icon} source={Icons.check} />
-      ) : null}
-    </TouchableOpacity>
-  );
+  const renderItem = ({item}) => {
+    let isSelected = isLabelSelected(item);
+    console.log('isSelected', isSelected);
+    return (
+      <TouchableOpacity
+        style={[
+          styles.item,
+          {
+            backgroundColor: isSelected ? Colors.ui_grey_3 : Colors.ui_grey_4,
+          },
+        ]}
+        onPress={() => onItemPress(item)}>
+        <Image
+          style={styles.icon}
+          source={
+            isSelected ? Icons.check_box_checked : Icons.check_box_unchecked
+          }
+        />
+        <AppText size={14} color={Colors.ui_grey_2} style={styles.itemTitle}>
+          {item.label}
+        </AppText>
+      </TouchableOpacity>
+    );
+  };
 
   const renderDropdown = () => {
     return (
@@ -224,6 +228,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: Colors.ui_grey_4,
     width: DIMENSIONS.WIDTH / 1.12,
+    shadowColor: Colors.ui_black,
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 2,
   },
   overlay: {
     width: '100%',
@@ -239,5 +248,6 @@ const styles = StyleSheet.create({
   },
   itemTitle: {
     flex: 1,
+    marginStart: 10,
   },
 });

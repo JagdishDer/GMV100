@@ -12,7 +12,11 @@ const DropDownComponents = () => {
     {label: 'Option 4'},
   ];
 
-  const [selectedMultiple, setSelectedMultiple] = useState([OPTIONS[2]]);
+  const [selectedMultiple, setSelectedMultiple] = useState([
+    OPTIONS[2],
+    OPTIONS[0],
+  ]);
+  const [selectedMultiple2, setSelectedMultiple2] = useState([OPTIONS[0]]);
 
   return (
     <View style={styles.container}>
@@ -44,8 +48,8 @@ const DropDownComponents = () => {
       />
       <MultiSelectDropdown
         label={'Choose an option'}
-        selectedLabels={selectedMultiple}
-        onUpdateSelected={setSelectedMultiple}
+        selectedLabels={selectedMultiple2}
+        onUpdateSelected={setSelectedMultiple2}
         data={OPTIONS}
         error={'Error message here'}
       />

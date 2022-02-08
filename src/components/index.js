@@ -7,6 +7,7 @@ import {MultiSelectDropdown} from './multi-select-dropdown';
 import {TabBar} from './tab-bar';
 import {SectionListComponent} from './section-list';
 import {SectionListHeader} from './section-list-header';
+import {Table} from './table';
 
 export {
   Button,
@@ -18,4 +19,5 @@ export {
   TabBar,
   SectionListComponent,
   SectionListHeader,
+  Table,
 };
